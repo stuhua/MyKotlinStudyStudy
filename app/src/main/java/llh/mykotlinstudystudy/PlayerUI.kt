@@ -16,6 +16,8 @@ class PlayerUI private constructor() {
         val instance = PlayerUI()
     }
 
-
+    fun showPlayer(user: User) {
+        MediaPlayerView(getViewPlayerView(user.type)).showView()
+    }
 
 }
