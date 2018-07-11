@@ -19,13 +19,23 @@ class ExampleUnitTest {
     @Test
     fun Test1() {
 
-        onlyif(true){
+        onlyif(true) {
             println("liulianhua")
         }
+
+        val runnable = Runnable {
+            println("Runnable::run")
+        }
+        val function: () -> Unit
+        function = runnable::run
     }
 
     fun onlyif(isDebug: Boolean, block: () -> Unit) {
         if (isDebug) block()
     }
+    /*   var runnable = Runnable {  }
+       val function:()->Unit
+       function=runnable::run*/
+
 
 }
