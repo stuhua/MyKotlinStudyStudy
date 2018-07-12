@@ -20,7 +20,7 @@ class ExampleUnitTest {
     fun Test1() {
 
         onlyif(true) {
-            println("liulianhua")
+            println("llh")
         }
 
         val runnable = Runnable {
@@ -37,6 +37,11 @@ class ExampleUnitTest {
        val function:()->Unit
        function=runnable::run*/
 
+    @Test
+    fun test2() {
+        decor(::hello)
+        decor { println("hello1") }
+    }
 
     fun shop(girl: String, play: () -> Unit) {
         println("girl:$girl")
@@ -46,9 +51,28 @@ class ExampleUnitTest {
     fun decor(func: () -> Unit): Unit {
         fun funcPlus() {
             println("start")
-            func
+            func()
             println("end")
         }
         return funcPlus()
+    }
+
+    fun hello() {
+        println("hello111")
+    }
+
+    @Test
+    fun Test3() {
+        var ints = arrayListOf<Int>(1, 2, 3)
+        var newInts = ints.IntsMap { it * 10 }
+        newInts.forEach { println(it) }
+    }
+
+    fun List<Int>.IntsMap(transform: (Int) -> Int): List<Int> {
+        var result = arrayListOf<Int>()
+        for (item in this) {
+            result.add(transform(item))
+        }
+        return result
     }
 }
