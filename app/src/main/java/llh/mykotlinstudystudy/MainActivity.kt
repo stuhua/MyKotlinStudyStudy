@@ -8,7 +8,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val user = User(1, "llh")
+        val user = User(1, "llh", PlayerViewType.BLACK)
         PlayerUI.get().showPlayer(user)
     }
 }
