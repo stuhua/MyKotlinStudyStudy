@@ -38,4 +38,17 @@ class ExampleUnitTest {
        function=runnable::run*/
 
 
+    fun shop(girl: String, play: () -> Unit) {
+        println("girl:$girl")
+        play
+    }
+
+    fun decor(func: () -> Unit): Unit {
+        fun funcPlus() {
+            println("start")
+            func
+            println("end")
+        }
+        return funcPlus()
+    }
 }
