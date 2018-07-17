@@ -75,4 +75,68 @@ class ExampleUnitTest {
         }
         return result
     }
+
+    @Test
+    fun Test4() {
+        val firstName: String = "tao"
+        val lastName: String? = null
+
+        println("my name is ${getName(firstName, lastName)}")
+    }
+
+    fun hasEmpty(vararg strArray: String?): Boolean {
+        for (str in strArray) {
+            str ?: return true
+        }
+        return false
+    }
+
+    fun getName(firstName: String?, lastName: String? = "unknow"): String {
+        if (hasEmpty(firstName, lastName)) {
+            lastName?.let { return@getName "${checkName(firstName)} $lastName" }
+            firstName?.let { return@getName "$firstName ${checkName(lastName)}" }
+        }
+        return "$firstName $lastName"
+    }
+
+    fun checkName(name: String?): String = name ?: "unknow"
+    @Test
+    fun Test5() {
+//        function()
+        { msg: String ->
+            println(msg)
+        }("liulianhua")
+    }
+
+    fun function() {
+        val str = "hello!"
+
+        fun say(count: Int = 10) {
+            println(str + count)
+            if (count > 0) {
+                say(count - 1)
+            }
+        }
+        say()
+    }
+
+    @Test
+    fun Test6() {
+        {
+            val list: List<String> = listOf("hello", "world")
+            list.convert {
+                it.hashCode()
+            }.forEach {
+                        print("$it")
+                    }
+        }()
+    }
+
+    inline fun <T, E> Iterable<T>.convert(action: (T) -> E): MutableList<E> {
+        val list: MutableList<E> = mutableListOf()
+        for (element in this) list.add(action(element))
+        return list
+    }
+
+
 }
