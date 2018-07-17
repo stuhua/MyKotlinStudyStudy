@@ -1,5 +1,6 @@
 package llh.mykotlinstudystudy
 
+import kotlinx.coroutines.experimental.*
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -136,6 +137,33 @@ class ExampleUnitTest {
         val list: MutableList<E> = mutableListOf()
         for (element in this) list.add(action(element))
         return list
+    }
+
+    @Test
+    fun Test7() {
+        //每秒输出两个数字
+        val job1 = launch(Unconfined, CoroutineStart.LAZY) {
+            var count = 0
+            while (true) {
+                count++
+                //delay()表示将这个协程挂起500ms
+                delay(500)
+                println("count::$count")
+            }
+        }
+
+        //job2会立刻启动
+        val job2 = async(CommonPool) {
+            job1.start()
+            "ZhangTao"
+        }
+
+        launch(Unconfined) {
+            delay(3000)
+            job1.cancel()
+            //await()的规则是：如果此刻job2已经执行完则立刻返回结果，否则等待job2执行
+            println(job2.await())
+        }
     }
 
 
