@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         PlayerUI.get().showPlayer(user)
         var btn = findViewById<Button>(R.id.btn)
         btn.setOnClickListener {
-            toast(this,"我是按钮1")
+            toast(this, "我是按钮1")
         }
         val job = async(CommonPool) {
             delay(10 * 1000)
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
             println(job.await())
             Log.d("MainActivity", "after")
         }
-
     }
 }
+
 fun Activity.toast(context: Context, text: String, duration: Int = Toast.LENGTH_SHORT): Unit {
     Toast.makeText(context, text, duration).show()
 }
